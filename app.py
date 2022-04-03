@@ -26,9 +26,9 @@ class GenerateResource:
       print(f"Loading model {model}")
       generator = pipeline('text-generation', model=model_path)
       current_model = model
-    output = generator(text, do_sample=True, min_length=length, max_length=length)
+    output = generator(text, return_full_text=False, min_length=length, max_length=length)
     output_text = output[0]['generated_text']
-    print(f"Generated for prompt '{text}': {output_text}")
+    print(f"Generated: [{text}]{output_text}")
     resp.media = {"text": output_text}
     resp.status = falcon.HTTP_OK
 
