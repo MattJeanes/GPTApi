@@ -1,5 +1,5 @@
-import falcon, os, gc
-from transformers import pipeline
+import falcon, os, gc, random
+from transformers import pipeline, set_seed
 
 current_model = None
 generator = None
@@ -26,7 +26,10 @@ class GenerateResource:
       print(f"Loading model {model}")
       generator = pipeline('text-generation', model=model_path)
       current_model = model
-    output = generator(text, return_full_text=False, min_length=length, max_length=length)
+    if text == "" or text == None:
+      text = "\n"
+    set_seed(random.randrange(0, 2**32))
+    output = generator(text, return_full_text=False, do_sample=True, handle_long_generation="hole", max_new_tokens=length)
     output_text = output[0]['generated_text']
     print(f"Generated: [{text}]{output_text}")
     resp.media = {"text": output_text}
