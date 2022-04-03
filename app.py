@@ -1,4 +1,4 @@
-import falcon, os
+import falcon, os, gc
 from transformers import pipeline
 
 current_model = None
@@ -19,6 +19,10 @@ class GenerateResource:
       resp.status = falcon.HTTP_BAD_REQUEST
       return
     if current_model != model:
+      if current_model != None:
+        print(f"Unloading model {current_model}")
+        del generator
+        gc.collect()
       print(f"Loading model {model}")
       generator = pipeline('text-generation', model=model_path)
       current_model = model
