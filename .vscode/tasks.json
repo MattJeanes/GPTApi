@@ -1,0 +1,12 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Start",
+            "type": "shell",
+            "command": "gunicorn",
+            "args": ["app", "--timeout", "3600", "--reload"],
+            "problemMatcher": []
+        }
+    ]
+}
