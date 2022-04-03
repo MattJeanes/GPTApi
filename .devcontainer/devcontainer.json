@@ -5,6 +5,7 @@
         "context": "..", 
         "args": {"VARIANT": "3.7"},
     },
+    "mounts": ["source=${localWorkspaceFolder}/models,target=/opt/gpt/models,type=bind,consistency=cached"],
     "extensions": ["ms-python.python"],
     "postCreateCommand": "pip3 install -r requirements.txt"
 } 
