@@ -5,7 +5,20 @@
             "label": "Start",
             "type": "shell",
             "command": "gunicorn",
-            "args": ["app", "--timeout", "3600", "--reload"],
+            "args": [
+                "app",
+                "--timeout",
+                "3600",
+                "--reload",
+                "--bind",
+                "0.0.0.0:8080"
+            ],
+            "options": {
+                "env": {
+                    "LENGTH": "50",
+                    "MODEL_FOLDER": "/opt/gpt/models"
+                }
+            },
             "problemMatcher": []
         }
     ]
