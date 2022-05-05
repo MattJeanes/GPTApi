@@ -68,8 +68,15 @@ spec:
           failureThreshold: 2
       volumes:
       - name: gpt
-        csi:
-          driver: file.csi.azure.com
-          volumeAttributes:
-            secretName: azure-storage-account
-            shareName: gpt
+        azureFile:
+          secretName: azure-storage-account
+          shareName: gpt
+      nodeSelector:
+        beta.kubernetes.io/os: linux
+        kubernetes.io/role: agent
+        type: virtual-kubelet
+      tolerations:
+      - key: virtual-kubelet.io/provider
+        operator: Exists
+      - key: azure.com/aci
+        effect: NoSchedule

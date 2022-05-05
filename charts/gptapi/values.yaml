@@ -7,11 +7,11 @@ ingress:
   host: ""
 resources:
   requests:
-    memory: "2Gi"
-    cpu: "100m"
+    memory: "3Gi"
+    cpu: 1
   limits:
-    memory: "2Gi"
-    cpu: "1500m"
+    memory: "3Gi"
+    cpu: 1
 env:
   normal:
     MODEL_FOLDER: /opt/gpt/models
