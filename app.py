@@ -36,11 +36,5 @@ class GenerateResource:
     resp.media = {"text": output_text}
     resp.status = falcon.HTTP_OK
 
-class HealthResource:
-  def on_get(self, req, resp):
-    resp.media = {"status": "OK"}
-    resp.status = falcon.HTTP_OK
-
 app = application = falcon.App()
 app.add_route("/api/generate", GenerateResource())
-app.add_route("/healthz", HealthResource())

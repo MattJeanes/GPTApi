@@ -47,25 +47,6 @@ spec:
           mountPath: /opt/gpt
         ports:
         - containerPort: 80
-        livenessProbe:
-          httpGet:
-            scheme: HTTP
-            port: 80
-            path: /healthz
-          initialDelaySeconds: 5
-          periodSeconds: 10
-          timeoutSeconds: 4
-          failureThreshold: 5
-        readinessProbe:
-          httpGet:
-            scheme: HTTP
-            port: 80
-            path: /healthz
-          initialDelaySeconds: 4
-          periodSeconds: 5
-          timeoutSeconds: 2
-          successThreshold: 1
-          failureThreshold: 2
       volumes:
       - name: gpt
         azureFile:

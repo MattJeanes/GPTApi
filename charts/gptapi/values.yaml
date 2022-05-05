@@ -5,12 +5,13 @@ image:
   pullPolicy: Always
 ingress:
   host: ""
+  whitelist: ""
 resources:
   requests:
-    memory: "3Gi"
+    memory: "2Gi"
     cpu: 1
   limits:
-    memory: "3Gi"
+    memory: "2Gi"
     cpu: 1
 env:
   normal:
