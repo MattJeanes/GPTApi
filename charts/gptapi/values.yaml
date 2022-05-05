@@ -1,0 +1,18 @@
+replicaCount: 1
+image:
+  repository: mattjeanes/gptapi
+  tag: latest
+  pullPolicy: Always
+ingress:
+  host: ""
+resources:
+  requests:
+    memory: "256Mi"
+    cpu: "100m"
+  limits:
+    memory: "256Mi"
+    cpu: "100m"
+env:
+  normal:
+    MODEL_FOLDER: /opt/gpt/models
+    LENGTH: 50
