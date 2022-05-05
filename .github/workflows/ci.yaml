@@ -67,7 +67,7 @@ jobs:
     - name: Install GPT Api
       run: |
         helm upgrade --install --wait --atomic --debug \
-          abyss ./gptapi \
+          gptapi ./gptapi \
           --namespace default
       working-directory: charts
         
