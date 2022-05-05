@@ -63,6 +63,7 @@ jobs:
         files: charts/gptapi/values.yaml
       env:
         ingress.host: "${{ secrets.HOST }}"
+        ingress.whitelist: "${{ secrets.IP_WHITELIST }}"
         
     - name: Install GPT Api
       run: |
