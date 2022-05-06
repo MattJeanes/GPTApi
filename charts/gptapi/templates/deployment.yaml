@@ -47,6 +47,13 @@ spec:
           mountPath: /opt/gpt
         ports:
         - containerPort: 80
+        startupProbe:
+          httpGet:
+            scheme: HTTP
+            port: 80
+            path: /healthz
+          periodSeconds: 5
+          failureThreshold: 6
       volumes:
       - name: gpt
         {{- if .Values.useVirtualKubelet }}
