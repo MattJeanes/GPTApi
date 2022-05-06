@@ -8,7 +8,7 @@ spec:
   strategy: 
     type: RollingUpdate
     rollingUpdate:
-      maxUnavailable: 1
+      maxUnavailable: {{ ternary 1 0 (gt (int .Values.replicaCount) 1) }}
       maxSurge: 1
   replicas: {{ .Values.replicaCount }}
   revisionHistoryLimit: 3
@@ -49,15 +49,26 @@ spec:
         - containerPort: 80
       volumes:
       - name: gpt
+        {{- if .Values.useVirtualKubelet }}
         azureFile:
           secretName: azure-storage-account
           shareName: gpt
+        {{- else }}
+        csi:
+          driver: file.csi.azure.com
+          volumeAttributes:
+            secretName: azure-storage-account
+            shareName: gpt
+        {{- end }}
       nodeSelector:
         beta.kubernetes.io/os: linux
-        kubernetes.io/role: agent
+        {{- if .Values.useVirtualKubelet }}
         type: virtual-kubelet
+        {{- end }}
+      {{- if .Values.useVirtualKubelet }}
       tolerations:
       - key: virtual-kubelet.io/provider
         operator: Exists
       - key: azure.com/aci
         effect: NoSchedule
+      {{- end }}

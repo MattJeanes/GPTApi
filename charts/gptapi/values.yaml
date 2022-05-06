@@ -1,4 +1,5 @@
 replicaCount: 1
+useVirtualKubelet: false
 image:
   repository: mattjeanes/gptapi
   tag: latest
