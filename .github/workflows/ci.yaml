@@ -73,8 +73,6 @@ jobs:
       working-directory: charts
         
     - name: Wait for certificate to be ready
-      run: |
-        . "./Common/Helpers.ps1"
-        Wait-KubeCertificate -Name "gptapi-tls"
+      run: WaitKubeCertificate.ps1 -Name "gptapi-tls"
       shell: pwsh
       working-directory: infrastructure/scripts
