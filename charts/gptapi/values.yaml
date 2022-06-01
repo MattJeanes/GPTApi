@@ -9,7 +9,7 @@ ingress:
   whitelist: ""
 resources:
   requests:
-    memory: "1000Mi"
+    memory: "1500Mi"
     cpu: 100m
   limits:
     memory: "1500Mi"
