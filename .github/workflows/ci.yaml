@@ -67,14 +67,12 @@ jobs:
         
     - name: Install GPT Api
       run: |
-        helm upgrade --install --wait --atomic --debug \
+        helm upgrade --install --wait --atomic --debug --timeout 10m0s \
           gptapi ./gptapi \
           --namespace default
       working-directory: charts
         
     - name: Wait for certificate to be ready
-      run: |
-        . "./Common/Helpers.ps1"
-        Wait-KubeCertificate -CertificateName "gptapi-tls"
+      run: ./WaitKubeCertificate.ps1 -Name "gptapi-tls"
       shell: pwsh
       working-directory: infrastructure/scripts
