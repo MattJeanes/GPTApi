@@ -16,7 +16,7 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     
     - name: Build Docker image
       run: docker build -t $DOCKER_USERNAME/gptapi:latest .
@@ -38,10 +38,10 @@ jobs:
     needs: [build]
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     
     - name: Checkout Infrastructure repo
-      uses: actions/checkout@v2.4.2
+      uses: actions/checkout@v3
       with:
         repository: MattJeanes/Abyss-Infrastructure
         path: infrastructure
