@@ -21,7 +21,7 @@ jobs:
     - name: Build Docker image
       run: docker build -t $DOCKER_USERNAME/gptapi:latest .
       env:
-        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_USERNAME: ${{ vars.DOCKER_USERNAME }}
       if: github.event.inputs.skipBuild != 'true'
 
     - name: Push Docker images
@@ -29,7 +29,7 @@ jobs:
         echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin
         docker push $DOCKER_USERNAME/gptapi:latest
       env:
-        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_USERNAME: ${{ vars.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       if: github.ref == 'refs/heads/main' && github.event.inputs.skipBuild != 'true'
   deploy:
@@ -57,12 +57,12 @@ jobs:
         resource-group: abyss
         cluster-name: abyss
         
-    - name: Variable Substitution
+    - name: Variable Substitution
       uses: microsoft/variable-substitution@v1
       with:
         files: charts/gptapi/values.yaml
       env:
-        ingress.host: "${{ secrets.HOST }}"
+        ingress.host: "${{ vars.HOST }}"
         ingress.whitelist: "${{ secrets.IP_WHITELIST }}"
         
     - name: Install GPT Api
