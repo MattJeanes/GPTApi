@@ -57,19 +57,13 @@ jobs:
         resource-group: abyss
         cluster-name: abyss
         
-    - name: Variable Substitution
-      uses: microsoft/variable-substitution@v1
-      with:
-        files: charts/gptapi/values.yaml
-      env:
-        ingress.host: "${{ vars.HOST }}"
-        ingress.whitelist: "${{ secrets.IP_WHITELIST }}"
-        
     - name: Install GPT Api
       run: |
         helm upgrade --install --wait --atomic --debug --timeout 10m0s \
           gptapi ./gptapi \
-          --namespace default
+          --namespace default \
+          --set ingress.host="${{ vars.HOST }}" \
+          --set ingress.whitelist="${{ secrets.IP_WHITELIST }}"
       working-directory: charts
         
     - name: Wait for certificate to be ready
