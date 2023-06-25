@@ -9,8 +9,10 @@ ingress:
   whitelist: ""
 resources:
   requests:
-    memory: 1150Mi
+    memory: "1500Mi"
     cpu: 100m
+  limits:
+    memory: "1500Mi"
 env:
   normal:
     MODEL_FOLDER: /opt/gpt/models
