@@ -5,7 +5,7 @@ WORKDIR /app
 COPY requirements.txt requirements.txt
 COPY install.sh install.sh
 
-RUN ./install.sh
+RUN chmod +x install.sh && ./install.sh
 
 COPY . .
 
