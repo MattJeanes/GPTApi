@@ -1,2 +1,1 @@
-ARG VARIANT=3.13
-FROM mcr.microsoft.com/vscode/devcontainers/python:${VARIANT}
+FROM mcr.microsoft.com/devcontainers/python:dev-3.13

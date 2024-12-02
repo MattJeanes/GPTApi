@@ -2,10 +2,9 @@
     "name": "Python 3", 
     "build": { 
         "dockerfile": "Dockerfile", 
-        "context": "..", 
-        "args": {"VARIANT": "3.13"},
+        "context": ".."
     },
     "mounts": ["source=${localWorkspaceFolder}/models,target=/opt/gpt/models,type=bind,consistency=cached"],
     "extensions": ["ms-python.python"],
-    "postCreateCommand": "pip3 install -r requirements.txt"
+    "postCreateCommand": "chmod +x install.sh && ./install.sh"
 } 

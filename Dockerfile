@@ -12,8 +12,9 @@ RUN apt update && \
 WORKDIR /app
 
 COPY requirements.txt requirements.txt
-RUN python3.13 -m pip install --no-cache-dir -r requirements.txt
-RUN python3.13 -m pip install --no-cache-dir https://download.pytorch.org/whl/cpu/torch-1.9.1%2Bcpu-cp39-cp39-linux_x86_64.whl
+COPY install.sh install.sh
+
+RUN ./install.sh
 
 COPY . .
 
