@@ -68,7 +68,7 @@ spec:
             shareName: gpt
         {{- end }}
       nodeSelector:
-        beta.kubernetes.io/os: linux
+        kubernetes.io/os: linux
         {{- if .Values.useVirtualKubelet }}
         type: virtual-kubelet
         {{- end }}
