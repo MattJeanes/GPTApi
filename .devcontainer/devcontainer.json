@@ -3,7 +3,7 @@
     "build": { 
         "dockerfile": "Dockerfile", 
         "context": "..", 
-        "args": {"VARIANT": "3.7"},
+        "args": {"VARIANT": "3.13"},
     },
     "mounts": ["source=${localWorkspaceFolder}/models,target=/opt/gpt/models,type=bind,consistency=cached"],
     "extensions": ["ms-python.python"],
