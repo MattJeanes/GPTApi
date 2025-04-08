@@ -1,4 +1,4 @@
-transformers==4.51.0
+transformers==4.51.1
 falcon==4.0.2
 gunicorn==23.0.0
 gevent==24.11.1
