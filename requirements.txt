@@ -1,5 +1,5 @@
 transformers==4.51.3
 falcon==4.0.2
 gunicorn==23.0.0
-gevent==24.11.1
+gevent==25.4.1
 greenlet==3.2.0
